@@ -38,7 +38,7 @@ Controladores: Rotas Flask que processam as requisições, interagem com os mode
 
 ## Esquema do Banco de Dados
 
-![esquema do banco de dados](static\images\diagrama_database.png)
+![esquema do banco de dados](static/images/diagrama_database.png)
 O banco de dados é composto pelas seguintes tabelas principais:
 
 - Usuário
