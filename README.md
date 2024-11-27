@@ -52,3 +52,55 @@ O banco de dados é composto pelas seguintes tabelas principais:
 - Custo
 
 As tabelas estão relacionadas de forma a permitir a organização dos dados por usuários, empresas, projetos e subcategorias personalizadas, mantendo a flexibilidade e a escalabilidade da aplicação.
+
+## Estrtura de Diretórios
+
+Ideia inicial de estrutura (sujeito a mudanças)
+
+```arduino
+calculadora_impacto/
+│
+├── app.py
+├── config.py
+├── requirements.txt
+├── .env
+├── README.md
+├── migrations/
+│   └── ...
+├── models/
+│   ├── __init__.py
+│   ├── categoria.py
+│   ├── subcategoria.py
+│   ├── subcategoria_personalizada.py
+│   ├── variavel.py
+│   ├── valor_variavel.py
+│   ├── custo.py
+│   └── ...
+├── templates/
+│   ├── base.html
+│   ├── index.html
+│   ├── resultado.html
+│   ├── adicionar_subcategoria.html
+│   └── ...
+├── static/
+│   ├── css/
+│   │   └── styles.css
+│   ├── js/
+│   │   └── scripts.js
+│   └── images/
+│       └── ...
+└── utils/
+    ├── calculos.py
+    └── helpers.py
+```
+
+Descrição dos Diretórios e Arquivos:
+
+- app.py: Arquivo principal da aplicação Flask.
+- config.py: Configurações da aplicação, como URI do banco de dados.
+- requirements.txt: Lista de dependências do projeto.
+- migrations/: Diretório usado pelo Flask-Migrate para migrações de banco de dados.
+- models/: Contém os modelos do SQLAlchemy que representam as tabelas do banco de dados.
+- templates/: Arquivos HTML que definem as páginas da aplicação.
+- static/: Arquivos estáticos, como CSS, JavaScript e imagens.
+- utils/: Módulos auxiliares, como funções de cálculo e helpers.

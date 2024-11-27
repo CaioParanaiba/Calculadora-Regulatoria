@@ -1,0 +1,18 @@
+<form class="c-form" action="{{ url_for('empresa.inserir_empresa')}}" method="POST" c-append="#lista_clientes">
+
+    <div class="mb-3">
+      <label class="form-label">Nome da empresa</label>
+      <input type="text" class="form-control" name="name">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Norma Regulatoria (lei/decreto/portaria)</label>
+      <input type="text" class="form-control" name="lei">
+    </div>
+
+
+    <p></p>
+    <button type="submit" class="btn btn-primary">Começar o cálculo</button>
+  </form>
+
+  
