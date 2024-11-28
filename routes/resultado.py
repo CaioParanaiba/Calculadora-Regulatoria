@@ -68,21 +68,31 @@ def calcular(empresa_id):
 @resultado_route.route('/resultados/<int:empresa_id>', methods=['GET'])
 def listar_resultados(empresa_id):
     """
-    Exibe os resultados dos cálculos vinculados a uma empresa.
+    Exibe os resultados dos cálculos vinculados a uma empresa e o total dos valores calculados.
     """
     empresa = Empresa.get(Empresa.id == empresa_id)
     resultados = Resultado.select().where(Resultado.empresa == empresa)
 
-    resultados_processados = [
-        {
+    # Processar resultados e calcular o total
+    resultados_processados = []
+    total_calculado = 0  # Inicializar o total como 0 para evitar erros
+
+    for res in resultados:
+        valor_calculado = res.valor_calculado or 0  # Garantir que o valor seja numérico
+        resultados_processados.append({
             'subcategoria': res.subcategoria_per.name,
             'descricao': res.subcategoria_per.definicao,
-            'valor_calculado': res.valor_calculado
-        }
-        for res in resultados
-    ]
-
-    return render_template('resultados.html', empresa=empresa, resultados=resultados_processados)
+            'valor_calculado': valor_calculado
+        })
+        total_calculado += valor_calculado  # Acumular o total
+    print(f"Total calculado: {total_calculado}")
+    # Passar os resultados e o total para o template
+    return render_template(
+        'resultados.html',
+        empresa=empresa,
+        resultados=resultados_processados,
+        total_calculado=total_calculado  # Passar o total calculado
+    )
 
 
 
