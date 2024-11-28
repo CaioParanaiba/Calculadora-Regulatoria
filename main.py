@@ -1,6 +1,12 @@
 from flask import Flask, render_template
 from configure import configure_all
+import logging
 
+logging.basicConfig(
+    filename='app.log',  # Nome do arquivo de log
+    level=logging.INFO,  # Nível do log
+    format='%(asctime)s %(levelname)s %(message)s'
+)
 
 # inicializar o flask
 app = Flask(__name__)

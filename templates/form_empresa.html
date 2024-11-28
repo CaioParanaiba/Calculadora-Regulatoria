@@ -69,22 +69,21 @@
 <body>
     <div class="container form-container">
         <h1>Calculadora de Impacto Regulatório para Empreendedores</h1>
-        <form class="c-form" action="{{ url_for('empresa.inserir_empresa') }}" method="POST">
+        <form action="{{ url_for('empresa.inserir_empresa') }}" method="POST">
             <div class="mb-3">
                 <label class="form-label" for="name">Atividade Empresarial</label>
                 <input type="text" id="name" class="form-control" name="name" placeholder="Digite a atividade empresarial" required>
             </div>
-
+        
             <div class="mb-3">
                 <label class="form-label" for="lei">Norma Regulatória (lei/decreto/portaria)</label>
                 <input type="text" id="lei" class="form-control" name="lei" placeholder="Digite a norma regulatória" required>
             </div>
-
+        
             <div class="d-grid gap-2">
                 <button type="submit" class="btn btn-primary">Começar o cálculo</button>
-                <button type="button" class="btn btn-secondary" onclick="window.location.href='/sobre'">Sobre</button>
             </div>
-        </form>
+        </form>        
     </div>
 
     <footer>

@@ -1,11 +1,13 @@
-from database import db
+from database.database import db
+from peewee import Model, ForeignKeyField, FloatField, TextField
+from database.models.empresa import Empresa
+from database.models.subcategoria import SubCategoriaPer
 
-class Custo(db.Model):
-    __tablename__ = 'custos'
+class Resultado(Model):
+    empresa = ForeignKeyField(Empresa, backref="resultados")
+    subcategoria_per = ForeignKeyField(SubCategoriaPer, backref="resultados")
+    valor_calculado = FloatField(null=True)  # Valor final do cálculo
+    detalhes_json = TextField(null=True)  # Informações extras sobre o cálculo (ex: variáveis usadas)
 
-    id = db.Column(db.Integer, primary_key=True)
-    valor_custo = db.Column(db.Float, nullable=False)
-    subcategoria_personalizada_id = db.Column(db.Integer, db.ForeignKey('subcategorias_personalizadas.id'), nullable=False)
-
-    def __repr__(self):
-        return f'<Custo {self.subcategoria_personalizada.nome_personalizado}: {self.valor_custo}>'
+    class Meta:
+        database = db
