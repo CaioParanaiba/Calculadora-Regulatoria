@@ -22,11 +22,12 @@ def calcular(empresa_id):
     subcategorias_per = SubCategoriaPer.select().where(SubCategoriaPer.empresa == empresa)
     # Processa os cálculos ao enviar o formulário
     if request.method == 'POST':
+        print(subcategorias_per)
         for sub in subcategorias_per:
+            print(f"Nome: {sub.name}, Descrição: {sub.definicao}")
             try:
                 # Avalia o JSON com as variáveis
                 variaveis = eval(sub.quantidades_json)  # Exemplo: {'n_funcionarios': 10, 'horas': 5}
-                print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
                 # Avalia a fórmula usando as variáveis
                 formula_resultado = eval(sub.formula, {}, variaveis)
                 
@@ -48,6 +49,15 @@ def calcular(empresa_id):
 
         # Redireciona para a página de resultados
         return redirect(url_for('resultado.listar_resultados', empresa_id=empresa_id))
+    subcategorias_processadas = [
+        {
+            'name': sub.name,
+            'descricao': sub.definicao or "Descrição não disponível"  # Fallback para evitar None
+        }
+        for sub in subcategorias_per
+    ]
+
+    print(subcategorias_processadas)  # Debug para validar os dados
 
     # Exibe a página de cálculo para revisão
     return render_template('calcular.html', empresa=empresa, subcategorias=subcategorias_per)
@@ -75,6 +85,10 @@ def listar_resultados(empresa_id):
     return render_template('resultados.html', empresa=empresa, resultados=resultados_processados)
 
 
+
+
+
+
 @resultado_route.route('/inserir_variaveis/<int:empresa_id>', methods=['GET', 'POST'])
 def inserir_variaveis(empresa_id):
     # Mapeamento de nomes amigáveis
@@ -84,7 +98,7 @@ def inserir_variaveis(empresa_id):
         'horas': 'Horas',
         'n_interacoes': 'Número de interações',
         'n_compras': 'Número de compras',
-        'horas_dedicas': 'Horas dedicas',
+        'horas_dedicas': 'Horas dedicadas',
     }
 
     empresa = Empresa.get(Empresa.id == empresa_id)
@@ -112,8 +126,9 @@ def inserir_variaveis(empresa_id):
     if request.method == 'POST':
         for sub in subcategorias_per:
             # Atualizar a descrição
-            nova_descricao = request.form.get(f'descricao_{sub.id}', sub.definicao)
-            sub.definicao = nova_descricao
+            nova_descricao = request.form.get(f'descricao_{sub.id}', '').strip()
+            if nova_descricao:  # Apenas atualiza se não estiver vazio
+                sub.definicao = nova_descricao
 
             # Atualizar variáveis
             variaveis = {}
