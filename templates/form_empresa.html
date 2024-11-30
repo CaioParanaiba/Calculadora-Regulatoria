@@ -1,96 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #f4f6f8; /* Cor de fundo suave */
-            font-family: 'Arial', sans-serif;
-        }
+{% extends "base.html" %}
 
-        .form-container {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 30px;
-            background: #ffffff; /* Fundo branco */
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Leve sombra */
-        }
+{% block title %}Página Inicial{% endblock %}
 
-        .form-container h1 {
-            text-align: center;
-            color: #007bff; /* Azul moderno */
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-
-        .form-container label {
-            font-weight: bold;
-            color: #555; /* Cor de destaque leve */
-        }
-
-        .form-container .form-control {
-            border-radius: 6px;
-            border: 1px solid #ced4da; /* Bordas claras */
-        }
-
-        .form-container .btn-primary {
-            background-color: #007bff; /* Azul primário */
-            border: none;
-            padding: 10px 15px;
-            font-size: 1rem;
-            border-radius: 6px;
-        }
-
-        .form-container .btn-primary:hover {
-            background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
-        }
-
-        .form-container .btn-secondary {
-            background-color: #6c757d;
-            border: none;
-            padding: 10px 15px;
-            font-size: 1rem;
-            border-radius: 6px;
-            color: #fff;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: #888;
-        }
-    </style>
-</head>
-<body>
-    <div class="container form-container">
-        <h1>Calculadora de Impacto Regulatório para Empreendedores</h1>
+{% block content %}
+    <div class="container form-container my-5">
+        <h1 class="team-title">Calculadora de Impacto Regulatório para Empreendedores</h1>
         <form action="{{ url_for('empresa.inserir_empresa') }}" method="POST">
+            <!-- Campo de Atividade Empresarial -->
             <div class="mb-3">
-                <label class="form-label" for="name">Atividade Empresarial</label>
-                <input type="text" id="name" class="form-control" name="name" placeholder="Digite a atividade empresarial" required>
+                <label class="form-label fw-bold" for="name">Atividade Empresarial</label>
+                <select id="name" class="form-select" name="name" required>
+                    <option value="" disabled selected>Selecione uma atividade empresarial</option>
+                    <option value="Agricultura, Pecuária, Produção Florestal, Pesca e Aquicultura">Agricultura, Pecuária, Produção Florestal, Pesca e Aquicultura</option>
+                    <option value="Indústrias Extrativas">Indústrias Extrativas</option>
+                    <option value="Indústrias de Transformação">Indústrias de Transformação</option>
+                    <option value="Eletricidade e Gás">Eletricidade e Gás</option>
+                    <option value="Água, Esgoto, Atividades de Gestão de Resíduos e Descontaminação">Água, Esgoto, Atividades de Gestão de Resíduos e Descontaminação</option>
+                    <option value="Construção">Construção</option>
+                    <option value="Comércio; Reparação de Veículos Automotores e Motocicletas">Comércio; Reparação de Veículos Automotores e Motocicletas</option>
+                    <option value="Transporte, Armazenagem e Correio">Transporte, Armazenagem e Correio</option>
+                    <option value="Alojamento e Alimentação">Alojamento e Alimentação</option>
+                    <option value="Informação e Comunicação">Informação e Comunicação</option>
+                    <option value="Atividades Financeiras, de Seguros e Serviços Relacionados">Atividades Financeiras, de Seguros e Serviços Relacionados</option>
+                    <option value="Atividades Imobiliárias">Atividades Imobiliárias</option>
+                    <option value="Atividades Profissionais, Científicas e Técnicas">Atividades Profissionais, Científicas e Técnicas</option>
+                    <option value="Atividades Administrativas e Serviços Complementares">Atividades Administrativas e Serviços Complementares</option>
+                    <option value="Administração Pública, Defesa e Seguridade Social">Administração Pública, Defesa e Seguridade Social</option>
+                    <option value="Educação">Educação</option>
+                    <option value="Saúde Humana e Serviços Sociais">Saúde Humana e Serviços Sociais</option>
+                    <option value="Artes, Cultura, Esporte e Recreação">Artes, Cultura, Esporte e Recreação</option>
+                    <option value="Outras Atividades de Serviços">Outras Atividades de Serviços</option>
+                    <option value="Serviços Domésticos">Serviços Domésticos</option>
+                    <option value="Organismos Internacionais e Outras Instituições Extraterritoriais">Organismos Internacionais e Outras Instituições Extraterritoriais</option>
+                </select>
             </div>
-        
+
+            <!-- Campo de Norma Regulatória -->
             <div class="mb-3">
-                <label class="form-label" for="lei">Norma Regulatória (lei/decreto/portaria)</label>
+                <label class="form-label fw-bold" for="lei">Norma Regulatória (lei/decreto/portaria)</label>
                 <input type="text" id="lei" class="form-control" name="lei" placeholder="Digite a norma regulatória" required>
             </div>
-        
+
+            <!-- Checkbox de Aceitação dos Termos -->
+            <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                <label class="form-check-label" for="agreeTerms">
+                    Eu concordo com os <a href="/termos" class="text-primary fw-bold">termos e condições</a>.
+                </label>
+            </div>
+
+            <!-- Botão de Submissão -->
             <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary">Começar o cálculo</button>
+                <button type="submit" class="btn btn-primary btn-lg">Começar o cálculo</button>
             </div>
         </form>        
     </div>
 
-    <footer>
-        <p>&copy; 2024 Calculadora de Impacto Regulatório para Empreendedores</p>
-    </footer>
+    <style>
+        h1 {
+            font-size: 2.5rem; /* Tamanho maior para destaque */
+            font-weight: bold; /* Negrito */
+            margin-bottom: 20px; /* Espaçamento inferior */
+        }
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+        .form-label {
+            font-size: 1rem; /* Tamanho padrão */
+        }
+
+        .btn-primary {
+            background-color: #007bff; /* Azul principal */
+            border: none;
+            border-radius: 8px; /* Botões arredondados */
+            padding: 10px 20px;
+            font-size: 1.2rem;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
+        }
+
+        .form-control, .form-select {
+            border-radius: 8px; /* Campos arredondados */
+            padding: 10px; /* Mais espaço interno */
+        }
+
+        .form-check-label a {
+            text-decoration: none;
+            color: #007bff; /* Azul principal */
+        }
+
+        .form-check-label a:hover {
+            text-decoration: underline;
+            color: #0056b3; /* Azul mais escuro ao passar o mouse */
+        }
+
+        .form-check-input {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px; /* Bordas levemente arredondadas */
+        }
+    </style>
+{% endblock %}

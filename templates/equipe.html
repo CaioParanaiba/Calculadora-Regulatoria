@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Membros do Projeto{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="team-title">Conheça a Equipe</h1>
+    <!-- Membro 1 -->
+    <div class="row align-items-center mb-5">
+        <div class="col-md-4">
+            <img src="{{ url_for('static', filename='images/membro1.jpg') }}" alt="Membro 1" class="img-fluid rounded-circle shadow member-photo">
+        </div>
+        <div class="col-md-8">
+            <h3>Adriano de Carvalho Paranaiba, Ph.D.</h3>
+            <p style="text-align: justify;">Economista, mestre em agronegócio e doutor em transportes. Professor e pesquisador de economia no Instituto Federal de Educação, Ciência e Tecnologia de Goiás (IFG). Editor chefe MISES: Revista Interdisciplinar de Filosofia, Direito e Economia.</p>
+            <div>
+                <!-- Ícone do LinkedIn -->
+                <a href="https://www.linkedin.com/in/adriano-paranaiba/" target="_blank" class="social-icon" data-bs-toggle="tooltip" title="LinkedIn">
+                    <i class="fab fa-linkedin fa-2x"></i>
+                </a>
+                <!-- Ícone do Lattes -->
+                <a href="http://lattes.cnpq.br/3060804717012355" target="_blank" class="social-icon" data-bs-toggle="tooltip" title="Lattes">
+                    <img src="{{ url_for('static', filename='images/lattes_logo.png') }}" alt="Lattes">
+                </a>
+                <!-- Ícone do ORCID -->
+                <a href="https://orcid.org/0000-0001-8159-3589" target="_blank" class="social-icon" data-bs-toggle="tooltip" title="ORCID">
+                    <i class="fab fa-orcid fa-2x"></i>
+                </a>
+            </div>            
+        </div>
+    </div>
+        <!-- Membro 2 -->
+    <div class="row align-items-center mb-5">
+        <div class="col-md-8 text-end">
+            <h3>Caio Felipe Brito Paranaiba</h3>
+            <p style="text-align: justify;">
+                Estudante de Física Médica e apaixonado por programação. Atua em pesquisa e desenvolvimento de algoritmos de Inteligência Artificial aplicados à saúde. Com habilidades em desenvolvimento web e entusiasmo por tecnologias inovadoras, foi o responsável pela criação deste site e da calculadora, contribuindo significativamente para o avanço do projeto.
+            </p>
+            <!-- Links para GitHub e LinkedIn -->
+            <div>
+                <a href="https://github.com/CaioParanaiba" target="_blank" class="social-icon" data-bs-toggle="tooltip" title="GitHub">
+                    <i class="fab fa-github fa-2x mx-2"></i>
+                </a>
+                <!-- Ícone do Lattes -->
+                <a href="http://lattes.cnpq.br/3091928356183525" target="_blank" class="social-icon" data-bs-toggle="tooltip" title="Lattes">
+                    <img src="{{ url_for('static', filename='images/lattes_logo.png') }}" alt="Lattes">
+                </a>
+                <a href="https://www.linkedin.com/in/caioparanaiba/" target="_blank" class="social-icon" data-bs-toggle="tooltip" title="LinkedIn">
+                    <i class="fab fa-linkedin fa-2x mx-2"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <img src="{{ url_for('static', filename='images/membro2.jpeg') }}" alt="Caio Paranaíba" class="img-fluid rounded-circle shadow member-photo">
+        </div>
+    </div>
+    <!-- Membro 3 -->
+    <div class="row align-items-center mb-5">
+        <div class="col-md-4">
+            <img src="{{ url_for('static', filename='images/membro3.jpg') }}" alt="Membro 3" class="img-fluid rounded-circle shadow member-photo">
+        </div>
+        <div class="col-md-8">
+            <h3>Dimária Silva e Meirelles, Ph.D.</h3>
+            <p style="text-align: justify;">Professora Adjunta na Universidade Presbiteriana Mackenzie em São Paulo, Brasil, com histórico comprovado de trabalho na indústria de ensino superior. Habilidades em Indústria de Serviços, Modelo de Negócios, Planejamento Estratégico e Palestras. Interesse em pesquisa em Serviços Baseados em Tecnologia.</p>
+            <div>
+                <!-- Ícone do LinkedIn -->
+                <a href="https://www.linkedin.com/in/dimaria-meirelles-8209787/" target="_blank" class="social-icon" data-bs-toggle="tooltip" title="LinkedIn">
+                    <i class="fab fa-linkedin fa-2x"></i>
+                </a>
+                <!-- Ícone do Lattes -->
+                <a href="http://lattes.cnpq.br/0475857286175034" target="_blank" class="social-icon" data-bs-toggle="tooltip" title="Lattes">
+                    <img src="{{ url_for('static', filename='images/lattes_logo.png') }}" alt="Lattes">
+                </a>
+                <!-- Ícone do ORCID -->
+                <a href="https://orcid.org/0000-0002-2755-5570" target="_blank" class="social-icon" data-bs-toggle="tooltip" title="ORCID">
+                    <i class="fab fa-orcid fa-2x"></i>
+                </a>
+            </div>  
+        </div>
+    </div>
+    <!-- Membro 4 -->
+    <div class="row align-items-center mb-5">
+        <div class="col-md-8 text-end">
+            <h3>Fernando Antonio Monteiro Christoph D'Andrea, Ph.D.</h3>
+            <p style="text-align: justify;">Professor Assistente na Embry Riddle Aeronautical University com PhD em Empreendedorismo na Oklahoma State University e um MSc em Engenharia de Gestão no Politecnico di Milano. Por mais de 10 anos, tenho trabalhado na academia como instrutor e, a partir do outono de 2023, como Professor Assistente de Empreendedorismo.</p>
+            <div>
+                <!-- Ícone do LinkedIn -->
+                <a href="https://www.linkedin.com/in/dodandrea/" target="_blank" class="social-icon" data-bs-toggle="tooltip" title="LinkedIn">
+                    <i class="fab fa-linkedin fa-2x"></i>
+                </a>
+                <!-- Ícone do Lattes -->
+                <a href="http://lattes.cnpq.br/5691587174189454" target="_blank" class="social-icon" data-bs-toggle="tooltip" title="Lattes">
+                    <img src="{{ url_for('static', filename='images/lattes_logo.png') }}" alt="Lattes">
+                </a>
+                <!-- Ícone do ORCID -->
+                <a href="https://orcid.org/0000-0002-8642-7157" target="_blank" class="social-icon" data-bs-toggle="tooltip" title="ORCID">
+                    <i class="fab fa-orcid fa-2x"></i>
+                </a>
+            </div> 
+        </div>
+        <div class="col-md-4">
+            <img src="{{ url_for('static', filename='images/membro4.jpg') }}" alt="Membro 4" class="img-fluid rounded-circle shadow member-photo">
+        </div>
+    </div>
+</div>
+
+<!-- Inicialização dos tooltips do Bootstrap -->
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+</script>
+
+<!-- Estilos Personalizados -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+{% endblock %}

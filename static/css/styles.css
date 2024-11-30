@@ -1,0 +1,79 @@
+/* Efeito hover nas fotos dos membros */
+.member-photo {
+    transition: transform 0.3s;
+}
+.member-photo:hover {
+    transform: scale(1.2);
+}
+
+/* Estilos adicionais para remover sublinhado */
+.social-icon {
+    text-decoration: none;
+}
+
+/* Estilos para os ícones Font Awesome */
+.social-icon i {
+    transition: color 0.3s;
+    color: #000; /* Cor padrão dos ícones */
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    text-decoration: none;
+    margin: 0 0.5em;
+}
+
+/* Efeito hover nos ícones Font Awesome */
+.social-icon i:hover {
+    color: #007bff; /* Cor azul padrão do Bootstrap */
+}
+
+/* Estilos para o ícone de imagem do Lattes */
+.social-icon img {
+    transition: filter 0.3s;
+    width: 1.8em;
+    height: 1.8em;
+    vertical-align: middle;
+    object-fit: contain;
+    text-decoration: none;
+    margin: 0 0.5em;
+}
+
+/* Efeito hover no ícone Lattes */
+.social-icon img:hover {
+    filter: brightness(0) saturate(100%) invert(32%) sepia(99%) saturate(3235%) hue-rotate(193deg) brightness(97%) contrast(101%);
+}
+
+.team-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #007bff; /* Azul da paleta de cores do Bootstrap */
+    text-align: center;
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.team-title::after {
+    content: '';
+    width: 60px;
+    height: 4px;
+    background-color: #007bff;
+    display: block;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+}
+
+.team-title {
+    background: linear-gradient(135deg, #007bff 0%, #6610f2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.card-text {
+    text-align: justify;
+}
+
+@media (min-width: 768px) {
+    .card-text {
+        max-width: 600px;
+    }
+}

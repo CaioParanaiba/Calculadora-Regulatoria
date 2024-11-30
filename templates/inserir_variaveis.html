@@ -1,120 +1,121 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inserir Valores</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+{% extends "base.html" %}
+
+{% block title %}Inserir Valores{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="card-body">
+            <div class="text-center mb-3">
+                <h1 class="text-primary fw-bold">Inserir Valores para {{ empresa.lei }}</h1>
+                <p class="text-muted">
+                    Selecione as subcategorias abaixo, preencha as informações necessárias, como descrição, preço e variáveis, e clique em "Visão Geral" para prosseguir.
+                </p>
+            </div>
+            <form method="POST" action="{{ url_for('resultado.inserir_variaveis', empresa_id=empresa.id) }}">
+                <div class="table-responsive">
+                    <table class="table table-borderless align-middle">
+                        <thead>
+                            <tr class="border-bottom">
+                                <th>Custos</th>
+                                <th>Descrição</th>
+                                <th>Preço</th>
+                                <th>Variáveis</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for sub in subcategorias %}
+                            <tr class="border-bottom">
+                                <td class="text-center fw-bold">
+                                    {{ sub.name }}
+                                </td>
+                                <td>
+                                    <textarea name="descricao_{{ sub.id }}" class="form-control" rows="3" required>{{ sub.descricao }}</textarea>
+                                </td>
+                                <td class="text-center">
+                                    <div class="mb-3">
+                                        <label for="{{ sub.preco_tecnico }}_{{ sub.id }}" class="form-label fw-bold">{{ sub.preco_amigavel }}:</label>
+                                        <input type="number" id="{{ sub.preco_tecnico }}_{{ sub.id }}" name="{{ sub.preco_tecnico }}_{{ sub.id }}" class="form-control" placeholder="Ex.: 100.00" step="0.01" min="0" required>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    {% if sub.variaveis %}
+                                        {% for var in sub.variaveis %}
+                                        <div class="mb-3">
+                                            <label for="{{ var.tecnico }}_{{ sub.id }}" class="form-label fw-bold">{{ var.amigavel }}</label>
+                                            <input type="number" id="{{ var.tecnico }}_{{ sub.id }}" name="{{ var.tecnico }}_{{ sub.id }}" class="form-control mb-2" placeholder="Digite o valor" required>
+                                        </div>
+                                        {% endfor %}
+                                    {% else %}
+                                        <!-- Se não houver variáveis, deixamos a coluna em branco -->
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg px-5">Visão Geral</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <style>
-        body {
-            background-color: #f8f9fa; /* Cor de fundo clara */
-            font-family: 'Arial', sans-serif;
-        }
-
-        .container {
-            margin-top: 50px;
-            max-width: 900px;
-        }
-
-        .card {
-            border: none;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            border-radius: 10px;
-        }
-
-        .card-header {
-            background-color: #007bff;
-            color: #fff;
-            font-size: 1.2rem;
+        h1 {
+            font-size: 2rem;
             font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+
+        .table {
+            border-collapse: collapse; /* Remove os espaços entre bordas */
+        }
+
+        th, td {
+            vertical-align: middle !important;
             text-align: center;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
+            padding: 15px;
         }
 
-        .form-label {
-            font-weight: bold;
+        .border-bottom {
+            border-bottom: 1px solid #dee2e6; /* Linha horizontal */
+        }
+
+        textarea {
+            resize: vertical;
+            height: 100px;
+            border-radius: 8px;
+        }
+
+        .form-control {
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        label {
+            margin-bottom: 5px;
         }
 
         .btn-primary {
             background-color: #007bff;
             border: none;
-            border-radius: 5px;
+            border-radius: 50px;
             padding: 10px 20px;
+            font-size: 1.2rem;
         }
 
         .btn-primary:hover {
             background-color: #0056b3;
         }
 
-        .table-responsive {
-            overflow-x: auto;
-        }
-
-        td {
-            vertical-align: middle !important;
-        }
-
-        textarea {
-            resize: vertical;
-            height: 120px;
+        .table-bordered > :not(caption) > * > * {
+            border-color: #dee2e6 !important; /* Cor das bordas da tabela */
         }
     </style>
-</head>
-<body>
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-                Inserir Valores para {{ empresa.name }}
-            </div>
-            <div class="card-body">
-                <form method="POST" action="{{ url_for('resultado.inserir_variaveis', empresa_id=empresa.id) }}">
-                    <div class="table-responsive">
-                        <table class="table table-bordered align-middle">
-                            <thead>
-                                <tr>
-                                    <th>Custos</th>
-                                    <th>Descrição</th>
-                                    <th>Preço</th>
-                                    <th>Variáveis</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for sub in subcategorias %}
-                                <tr>
-                                    <td class="text-center">
-                                        <strong>{{ sub.name }}</strong>
-                                    </td>
-                                    <td>
-                                        <textarea name="descricao_{{ sub.id }}" class="form-control" rows="3" required>{{ sub.descricao }}</textarea>
-                                    </td>
-                                    <td>
-                                        <input type="number" name="preco_{{ sub.id }}" class="form-control" placeholder="Ex.: 100.00" step="0.01" required>
-                                    </td>
-                                    <td>
-                                        {% for var in sub.variaveis %}
-                                        <div class="mb-2">
-                                            <label for="{{ var.tecnico }}_{{ sub.id }}" class="form-label">{{ var.amigavel }}</label>
-                                            <input type="number" name="{{ var.tecnico }}_{{ sub.id }}" class="form-control" placeholder="Digite o valor" required>
-                                        </div>
-                                        {% endfor %}
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="text-center mt-4">
-                        <button type="submit" class="btn btn-primary">Visão Geral</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Manual da Calculadora{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="team-title">Manual da Calculadora</h1>
+    
+    <!-- Botão para Download do Manual -->
+    <div class="text-center mb-4">
+        <a href="{{ url_for('static', filename='manual/manual_calculadora.pdf') }}" class="btn btn-primary btn-lg" download>
+            <i class="fas fa-download"></i> Baixar Manual
+        </a>
+    </div>
+    
+    <!-- Visualização do PDF -->
+    <div class="pdf-viewer">
+        <iframe src="{{ url_for('static', filename='manual/manual_calculadora.pdf') }}" width="100%" height="800px" style="border: none;">
+            Este navegador não suporta PDFs. Por favor, faça o download do PDF para visualizá-lo: 
+            <a href="{{ url_for('static', filename='manual/manual_calculadora.pdf') }}">Download PDF</a>.
+        </iframe>
+    </div>
+</div>
+{% endblock %}
