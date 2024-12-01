@@ -1,8 +1,12 @@
 from flask import Flask, render_template
 from configure import configure_all
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 # inicializar o flask
 app = Flask(__name__)
+
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_host=1, x_proto=1)
+
 
 configure_all(app)
 
@@ -24,4 +28,4 @@ def termos_e_condicoes():
     return render_template('termos_e_condicoes.html')
 
 # Execução
-app.run(debug=True) # modo desenvolvedor
+app.run(host='0.0.0.0', port=5000, debug=True) # modo desenvolvedor
